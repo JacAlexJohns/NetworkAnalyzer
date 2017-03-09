@@ -16,6 +16,7 @@ public class Node {
 	private double CB;
 	List<Node> p;
 
+	// Node creator : takes only a string name and an href
 	public Node(String name, String href) {
 		this.name = name;
 		this.href = href;
@@ -28,97 +29,122 @@ public class Node {
 		p = new ArrayList<Node>();
 	}
 	
+	// Get name
 	public String getName() {
 		return this.name;
 	}
 	
+	// Get href
 	public String getHref() {
 		return this.href;
 	}
 	
+	// Get the clustering coefficient/value
 	public double getClustering() {
 		return this.clustering;
 	}
 	
+	// Set the clustering coefficient/value
 	public void setClustering(double newC) {
 		this.clustering = newC;
 	}
 	
+	// Get the depth
 	public int getD() {
 		return this.d;
 	}
 
+	// Set the depth
 	public void setD(int d) {
 		this.d = d;
 	}
 	
+	// Get the sigma value
 	public double getSigma() {
 		return this.sigma;
 	}
 
+	// Set the sigma value
 	public void setSigma(double sigma) {
 		this.sigma = sigma;
 	}
 	
+	// Get the delta value
 	public double getDelta() {
 		return this.delta;
 	}
 
+	// Set the delta value
 	public void setDelta(double delta) {
 		this.delta = delta;
 	}
 	
+	// Get the CB value (node centrality)
 	public double getCB() {
 		return this.CB;
 	}
 
+	// Set the CB value (node centrality)
 	public void setCB(double CB) {
 		this.CB = CB;
 	}
 	
+	// Get the list of nodes, P
 	public List<Node> getP() {
 		return this.p;
 	}
 	
+	// Add a node to the list of nodes, P
 	public void addP(Node node) {
 		this.p.add(node);
 	}
 
+	// Clear the list of nodes, P
 	public void clearP() {
 		this.p = new ArrayList<Node>();
 	}
 	
+	// Get the number of mutual friends
+	public int getNumMutualFriends() {
+		return this.numMutualFriends;
+	}
+		
+	// Set the number of mutual friends
 	public void setNumMutualFriends(int n) {
 		this.numMutualFriends = n;
 	}
 	
-	public int getNumMutualFriends() {
-		return this.numMutualFriends;
-	}
-	
+	// Add a node to the friends list
 	public void addAFriend(Node n) {
 		if (!(friends.contains(n))) friends.add(n);
 	}
 	
+	// Remove a node from the friends list
+	public void removeAFriend(Node n) {
+		if ((friends.contains(n))) friends.remove(n);
+	}
+	
+	// Add an entire list of friends to the friends list
 	public void addFriends(List<Node> ns) {
 		for (Node friend : ns) addAFriend(friend);
 	}
 	
+	// Get the friends list
 	public List<Node> getFriends() {
 		return this.friends;
 	}
 	
+	// Get the friends list and clear the friends list
 	public List<Node> getFriendsAndClear() {
 		List<Node> friends = this.getFriends();
 		this.friends = new ArrayList<Node>();
 		return friends;
 	}
 	
+	// Print certain aspects of the node
 	public void print() {
 		System.out.println(this.name + ": " + this.friends.size() + " edges");
-		for (Node friend : this.friends) {
-			System.out.print(friend.name + ", ");
-		} System.out.println();
+		System.out.println("D: " + this.d + " | CB: " + this.CB + " | Sigma: " + this.sigma + " | Delta: " + this.delta);
 	}
 	
 	/*
